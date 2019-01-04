@@ -22,7 +22,7 @@ function countBlocks(blocksCounter) {
 }
 
 function findLine(blocksCounter) {
-  return Object.keys(blocksCounter).find(key => blocksCounter[key] >= 4);
+  return Object.keys(blocksCounter).find(key => blocksCounter[key] >= 10);
 }
 
 function removeLine(line) {

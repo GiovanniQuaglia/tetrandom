@@ -39,4 +39,4 @@ function moveSide(border, activeTetrandom) {
   }
 }
 
-export { moveDown, moveSide, checkCollisions };
+export { moveDown, moveSide };

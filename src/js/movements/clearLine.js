@@ -4,12 +4,9 @@ import {isRunning} from '../display/animation';
 var linesCounter = 0;
 
 function newGameReset(inactiveTetrandoms) {
-  if (inactiveTetrandoms.length > 0) {
-    inactiveTetrandoms.length = 0;
-  }
-  if (linesCounter != 0) {
-    linesCounter = 0
-  }
+  inactiveTetrandoms.length = 0;
+  linesCounter = 0;
+  return linesCounter
 }
 
 function countBlocks(blocksCounter) {
@@ -22,7 +19,7 @@ function countBlocks(blocksCounter) {
 }
 
 function findLine(blocksCounter) {
-  return Object.keys(blocksCounter).find(key => blocksCounter[key] >= 10);
+  return Object.keys(blocksCounter).find(key => blocksCounter[key] >= 4);
 }
 
 function removeLine(line) {

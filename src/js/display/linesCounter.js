@@ -1,8 +1,8 @@
-import { linesCounter } from '../movements/clearLine';
-
-function updatesLinesCounter () {
+function updatesLinesCounter (linesCounter) {
   const counter = document.getElementById('counter');
-  counter.innerHTML = `Lines: ${linesCounter}`;
+  if(counter) {
+    counter.innerHTML = `Lines: ${linesCounter}`;
+  }
 }
 
 export {updatesLinesCounter};

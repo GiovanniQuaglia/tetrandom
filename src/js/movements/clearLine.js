@@ -1,5 +1,4 @@
 import inactiveTetrandoms from '../tetrandom/inactiveTetrandoms';
-import {isRunning} from '../display/animation';
 
 var linesCounter = 0;
 
@@ -23,7 +22,6 @@ function findLine(blocksCounter) {
 }
 
 function removeLine(line) {
-  if (!isRunning) { return }
   for (let i = inactiveTetrandoms.length - 1; i >= 0; i--) {
     if (inactiveTetrandoms[i].y === line) {
       inactiveTetrandoms.splice(i, 1)

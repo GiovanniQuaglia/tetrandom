@@ -1,7 +1,7 @@
 import activeTetrandom from '../tetrandom/activeTetrandom';
 import inactiveTetrandoms from '../tetrandom/inactiveTetrandoms';
 import createTetrandom from '../tetrandom/tetrandom';
-import {endGame} from '../display/animation';
+import { stopGame } from '../display/animation';
 
 function updateInactiveTetradoms() {
   activeTetrandom.map(obj => inactiveTetrandoms
@@ -39,6 +39,9 @@ function inactiveTetraminsCollision(coord, dir) {
 }
 
 function checkCollisions() {
+  if (inactiveTetrandoms.some(outOfScreen)) {
+    stopGame()
+  }
   if (activeTetrandom.some(baseCollision)) {
     updateInactiveTetradoms();
     createNewTetrandom();
@@ -48,9 +51,6 @@ function checkCollisions() {
     updateInactiveTetradoms();
     createNewTetrandom();
     return;
-  }
-  if (inactiveTetrandoms.some(outOfScreen)) {
-    endGame();
   }
 }
 

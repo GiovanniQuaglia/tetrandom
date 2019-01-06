@@ -2,8 +2,12 @@ import { moveDown, moveSide } from './handleMovements';
 import activeTetrandom from '../tetrandom/activeTetrandom';
 import rotate from './handleRotation';
 import { timePassed } from '../display/animation';
+import { isRunning } from '../display/animation';
 
 function keyTracking(e) {
+  if (!isRunning) {
+    return
+  }
   switch (e.key) {
     case 'ArrowLeft':
       moveSide(0, activeTetrandom);

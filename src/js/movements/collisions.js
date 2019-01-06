@@ -50,7 +50,6 @@ function checkCollisions() {
     return;
   }
   if (inactiveTetrandoms.some(outOfScreen)) {
-    console.log(inactiveTetrandoms)
     endGame();
   }
 }

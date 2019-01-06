@@ -5,6 +5,7 @@ import activeTetrandom from '../tetrandom/activeTetrandom';
 import {clearLine} from '../movements/clearLine';
 import {updatesLinesCounter} from './linesCounter';
 import {clearDomElements, displayFinalScreen} from './domElements';
+import { linesCounter } from '../movements/clearLine';
 
 let lastFrameTimeMs = 0,
     maxFPS = 60,
@@ -30,7 +31,7 @@ function update() {
   }
   clearLine();
   iterateScreenToDraw();
-  updatesLinesCounter();
+  updatesLinesCounter(linesCounter);
 }
 
 function panic() {

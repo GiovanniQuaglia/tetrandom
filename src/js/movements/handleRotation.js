@@ -22,6 +22,7 @@ function rotateTetrandomBlocks(midX, midY, activeTetrandom, rotationDirection) {
     block.x = diffX;
     block.y = diffY;
   });
+  return activeTetrandom
 }
 
 function updateRotationQuarter(rotationQuarter) {
@@ -48,16 +49,28 @@ function adjustBorderCompenetration(activeTetrandom, coord, adjustDirection) {
   });
 }
 
-function fixCollisions(activeTetrandom) {
+function fixBottomCollision(activeTetrandom) {
   if (activeTetrandom.some(bottomCompenetration)) {
     adjustBorderCompenetration(activeTetrandom, 'y', -1);
-    fixCollisions();
+    fixBottomCollision(activeTetrandom);
   }
+  return activeTetrandom
+}
+
+function fixBorderCollisions(activeTetrandom) {
   const side = borderSideCompenetration(activeTetrandom);
   if (side) {
-  adjustBorderCompenetration(activeTetrandom, 'x', side);
-  fixCollisions();
+    adjustBorderCompenetration(activeTetrandom, 'x', side);
+    fixBorderCollisions(activeTetrandom);
   }
+}
+
+
+
+
+function fixCollisions(activeTetrandom) {
+  fixBorderCollisions(fixBottomCollision(activeTetrandom))
+  return activeTetrandom
 }
 
 function checkInactiveTetradomsCompenetrations(activeTetrandom) {
@@ -87,11 +100,8 @@ function handleRotation() {
     const oldTetrandom = JSON.parse(JSON.stringify(activeTetrandom));
     const midX = tetrandomMidpoint('x', 'y', rotationQuarter, activeTetrandom);
     const midY = tetrandomMidpoint('y', 'x', rotationQuarter, activeTetrandom);
-    rotateTetrandomBlocks(midX, midY, activeTetrandom, rotationDirection);
-
-    fixCollisions(activeTetrandom);
     rotationQuarter = updateRotationQuarter(rotationQuarter);
-    fixBlocksCompenetration(activeTetrandom, oldTetrandom);
+    fixBlocksCompenetration(fixCollisions(rotateTetrandomBlocks(midX, midY, activeTetrandom, rotationDirection)), oldTetrandom);
     return activeTetrandom;
   };
 }

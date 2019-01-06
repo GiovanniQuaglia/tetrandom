@@ -1,7 +1,10 @@
 import activeTetrandom from '../tetrandom/activeTetrandom';
-import {inactiveTetraminsCollision} from './collisions';
+import { inactiveTetraminsCollision, checkCollisions } from './collisions';
 
 function moveDown(activeTetrandom) {
+  if (checkCollisions()) {
+    return
+  }
   activeTetrandom.forEach(obj => {
     obj.y ++;
   });

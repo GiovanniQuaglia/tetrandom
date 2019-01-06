@@ -45,12 +45,12 @@ function checkCollisions() {
   if (activeTetrandom.some(baseCollision)) {
     updateInactiveTetradoms();
     createNewTetrandom();
-    return;
+    return true;
   }
   if (inactiveTetraminsCollision('y', 1)) {
     updateInactiveTetradoms();
     createNewTetrandom();
-    return;
+    return true;
   }
 }
 

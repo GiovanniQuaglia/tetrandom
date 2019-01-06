@@ -16,7 +16,7 @@ function keyTracking(e) {
       moveSide(9, activeTetrandom);
       break;
     case 'ArrowDown':
-      moveDown(activeTetrandom, timePassed);
+      moveDown(activeTetrandom);
       break;
     case 'a':
       rotate(activeTetrandom, -1);

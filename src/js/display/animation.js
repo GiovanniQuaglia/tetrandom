@@ -1,5 +1,4 @@
 import { moveDown } from '../movements/handleMovements';
-import { checkCollisions } from '../movements/collisions';
 import iterateScreenToDraw from './canvas';
 import activeTetrandom from '../tetrandom/activeTetrandom';
 import {clearLine} from '../movements/clearLine';
@@ -25,7 +24,6 @@ function update() {
     moveDown(activeTetrandom);
     timePassed = 0;
   }
-  checkCollisions();
   clearLine();
   iterateScreenToDraw();
   updatesLinesCounter(linesCounter);
